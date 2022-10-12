@@ -46,6 +46,7 @@ export default function Comments(props: Props) {
                 <button
                   className='button is-info'
                   onClick={() => {
+                    setComment('');
                     props.onCommentSend(comment);
                   }}
                 >

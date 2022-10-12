@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "_id": "6313109e53fb2d4f26c5ca95",
+      "answers": [
+        {
+          "id": 1,
+          "text": "Create an AMI from the volume and share the AMI."
+        },
+        {
+          "id": 2,
+          "text": "Take an unencrypted snapshot and share access to it with the other account."
+        },
+        {
+          "id": 3,
+          "text": "Copy the data to an unencrypted volume in your account, create a unencrypted snapshot and share access to it."
+        },
+        {
+          "id": 4,
+          "text": "Create a snapshot and share access to it. Then grant access to the AWS managed KMS key used to encrypt the volume, then the user can decrypt the volume access the data directly."
+        }
+      ],
+      "comments": [],
+      "correct_answers_count": 1,
+      "question_text": "**Test demo question**"
+    }
+  ]
+}

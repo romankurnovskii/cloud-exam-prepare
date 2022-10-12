@@ -12,7 +12,7 @@ export const Footer = () => {
       <div className='content has-text-left mt-auto'>
         Disclaimers:
         <br /> - This website is not related to, affiliated with, endorsed or
-        authorized by Amazon.
+        authorized by Amazon. All questions are got from free, public internet resources and there is no any relation to official exam questions.
         <br />- Trademarks, certification & product names are used for reference
         only and belong to Amazon.
         <div className='content has-text-centered'>

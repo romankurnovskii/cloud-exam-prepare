@@ -198,7 +198,7 @@ export const App = () => {
         <div className='column is-three-quarters'>
           <div className='block'>
             <h2 className='subtitle'>
-              AWS Certified Developer Associate exam questions
+            AWS Certified Developer Associate exam questions 2022 + questions for DVA-C02
             </h2>
           </div>
           <div className='block'>

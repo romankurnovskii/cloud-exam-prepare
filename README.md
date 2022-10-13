@@ -15,6 +15,8 @@ Project Roadmap: https://github.com/users/romankurnovskii/projects/4
 
 ## Usage
 
+You can start it locally or place app on your site. It will work with backend as usual.
+
 ```sh
 git clone https://github.com/romankurnovskii/cloud-exam-prepare.git
 cd cloud-exam-prepare

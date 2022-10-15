@@ -20,7 +20,7 @@ export default function Statistics(props: StatisticsType) {
           <a href='https://forms.gle/hm8TUuyHYk4TAbqK8' target='_blank'>
             Subscribe
           </a>
-          for new questions
+          for new certificate/questions
         </div>
       </div>
     </div>

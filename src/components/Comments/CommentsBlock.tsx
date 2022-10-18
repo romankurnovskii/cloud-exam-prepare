@@ -4,10 +4,11 @@ import Comment, { CommentType } from './Comment';
 type Props = {
   onCommentSend: (comment: string) => void;
   comments: CommentType[];
+  isAuthenticated: boolean;
 };
 
 export default function Comments(props: Props) {
-  const { comments } = props;
+  const { comments, isAuthenticated } = props;
 
   const [comment, setComment] = useState('');
 
@@ -27,33 +28,37 @@ export default function Comments(props: Props) {
         </header>
         <div className='card-content'>
           <div className='content'>
-            {commentsMap}
+            {isAuthenticated ? (
+            <>
+              {commentsMap}
 
-            <div className='field'>
-              <label className='label'>Message</label>
-              <div className='control'>
-                <textarea
-                  className='textarea'
-                  placeholder={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  value={comment}
-                ></textarea>
+              <div className='field'>
+                <label className='label'>Message</label>
+                <div className='control'>
+                  <textarea
+                    className='textarea'
+                    placeholder={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    value={comment}
+                  ></textarea>
+                </div>
               </div>
-            </div>
 
-            <div className='field is-grouped'>
-              <div className='control'>
-                <button
-                  className='button is-info'
-                  onClick={() => {
-                    setComment('');
-                    props.onCommentSend(comment);
-                  }}
-                >
-                  Submit
-                </button>
+              <div className='field is-grouped'>
+                <div className='control'>
+                  <button
+                    className='button is-info'
+                    onClick={() => {
+                      setComment('');
+                      props.onCommentSend(comment);
+                    }}
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
-            </div>
+            </>
+            ) : <p>Sign in to see comments</p>}
           </div>
         </div>
       </div>

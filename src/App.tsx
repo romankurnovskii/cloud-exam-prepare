@@ -229,14 +229,13 @@ export const App = () => {
             </div>
           )}
 
-          {isAuthenticated && (
-            <div className='block'>
-              <Comments
-                comments={question.comments}
-                onCommentSend={sendCommentHandler}
-              />
-            </div>
-          )}
+          <div className='block'>
+            <Comments
+              comments={question.comments}
+              onCommentSend={sendCommentHandler}
+              isAuthenticated={isAuthenticated}
+            />
+          </div>
         </div>
 
         <div className='column'>

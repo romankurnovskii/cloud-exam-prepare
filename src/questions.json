@@ -2,6 +2,7 @@
   "data": [
     {
       "_id": "6313109e53fb2d4f26c5ca95",
+      "exam_code": "AWS_DVA_C02",
       "answers": [
         {
           "id": 1,

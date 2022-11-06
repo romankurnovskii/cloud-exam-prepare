@@ -30,6 +30,7 @@ export type AnswerType = {
 
 export type QuestionType = {
   _id: string;
+  exam_code: string;
   answers: AnswerType[];
   comments: any[];
   correct_answers_count: number;

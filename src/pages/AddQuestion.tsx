@@ -4,13 +4,8 @@ import { AnswerType, NewQuestionPayloadType } from '../types';
 import GoToRootButton from '../components/Buttons/GotoRoot';
 import { addNewQuestion } from '../util/axios';
 import { Box, Dropdown } from 'react-bulma-components';
-
-
-// TODO fetch / parse
-const EXAM_CODES = {
-  AWS_CLF_C01: 'AWS Certified Cloud Practitioner (CLF-C01)',
-  AWS_DVA_C02: 'AWS Certified Developer Associate (DVA-C02)',
-};
+import { EXAM_CODES } from '../config';
+import { getLocalExamCode } from '../util/helpers';
 
 function AddQuestion() {
   const [exam, setExam] = useState<String>('Choose exam');
@@ -45,7 +40,7 @@ function AddQuestion() {
     }
 
     const questionData: NewQuestionPayloadType = {
-      exam_code: exam as string,
+      exam_code: getLocalExamCode(),
       question_text: text,
       answers,
       correct_answers_count: correctAnswers.size,
@@ -74,34 +69,16 @@ function AddQuestion() {
     setCorrectAnswers(tmpCorrectAnswers);
   };
 
-  const examCodesMap = Object.entries(EXAM_CODES).map((e) => {
-    return (
-      <Dropdown.Item renderAs='a' value={e[0]}>
-        {e[1]}
-      </Dropdown.Item>
-    );
-  });
+  // const examCodesMap = Object.entries(EXAM_CODES).map((e) => {
+  //   return (
+  //     <Dropdown.Item renderAs='a' value={e[0]}>
+  //       {e[1]}
+  //     </Dropdown.Item>
+  //   );
+  // });
 
   return (
     <div className='card'>
-      <Box
-        style={{
-          alignItems: 'center',
-          display: 'flex',
-          height: 50,
-          justifyContent: 'center',
-        }}
-      >
-        <Dropdown
-          closeOnSelect={false}
-          color=''
-          label={exam}
-          onChange={(e: String) => setExam(e)}
-        >
-          {examCodesMap}
-        </Dropdown>
-      </Box>
-
       <header className='card-header'>
         <p className='card-header-title'>
           <textarea

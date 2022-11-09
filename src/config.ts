@@ -51,3 +51,9 @@ export const Config: ConfigOptions = {
     provider: 'cognito',
   },
 };
+
+// TODO fetch / parse
+export const EXAM_CODES: Record<string, string> = {
+  AWS_CLF_C01: 'AWS Certified Cloud Practitioner (CLF-C01)',
+  AWS_DVA_C02: 'AWS Certified Developer Associate (DVA-C02)',
+};

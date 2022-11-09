@@ -23,6 +23,8 @@ import {
   AnswerPayloadRequestType,
   OnSendAnswerResponseType,
 } from './types';
+import HeaderCurrentExam from './components/HeaderCurrentExam';
+import { getLocalExamCode } from './util/helpers';
 
 type LocalProgressData = ProgressDataType & {
   questions: { [key: string]: boolean };
@@ -171,7 +173,7 @@ export const App = () => {
   const getNextQuestion = async () => {
     setShowExplanation(false);
     setExplanation({ id: 0, description: '' });
-    const randomQuestion = await getRandomQuestion();
+    const randomQuestion = await getRandomQuestion(getLocalExamCode());
     const {
       data,
       questions_count: questionsCount,
@@ -196,11 +198,7 @@ export const App = () => {
     <div>
       <div className='columns'>
         <div className='column is-three-quarters'>
-          <div className='block'>
-            <h2 className='subtitle'>
-            AWS Certified Developer Associate exam questions 2022 + questions for DVA-C02
-            </h2>
-          </div>
+          <HeaderCurrentExam />
           <div className='block'>
             <Routes>
               <Route

@@ -13,10 +13,7 @@ export type Props = {
 
 export const Answer = (props: Props) => {
   const [isClicked, setIsClicked] = useState(false);
-  // const [color, setColor] = useState('');
   const [border, setBorder] = useState('none');
-
-  console.log(props.isCorrect);
 
   const textContent = parseRawText(props.text);
 

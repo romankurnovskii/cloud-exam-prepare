@@ -1,6 +1,13 @@
 import axios, { Method } from 'axios';
 import { AUTH_TOKEN_NAME, Config } from '../config';
-import { AnswerPayloadRequestType, NewCommentPayloadType, NewQuestionPayloadType, OnSendAnswerResponseType, QuestionType, RandomQuestionResponseType } from '../types';
+import {
+  AnswerPayloadRequestType,
+  NewCommentPayloadType,
+  NewQuestionPayloadType,
+  OnSendAnswerResponseType,
+  QuestionType,
+  RandomQuestionResponseType,
+} from '../types';
 
 const { backend } = Config;
 
@@ -59,9 +66,12 @@ export const getQuestion = async (questionId: string) => {
   }) as Promise<{ data: QuestionType; status: string }>;
 };
 
-export const getRandomQuestion = async (): Promise<RandomQuestionResponseType> => {
+export const getRandomQuestion = async (
+  examCode: string
+): Promise<RandomQuestionResponseType> => {
   return ApiBeResolver('POST', SERVER_ENDPOINTS.GET_RANDOM_QUESTION, {
     visitorInfo: getAccessToken(),
+    exam_code: examCode,
   });
 };
 

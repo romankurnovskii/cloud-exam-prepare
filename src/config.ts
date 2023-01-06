@@ -57,3 +57,21 @@ export const EXAM_CODES: Record<string, string> = {
   AWS_CLF_C01: 'AWS Certified Cloud Practitioner (CLF-C01)',
   AWS_DVA_C02: 'AWS Certified Developer Associate (DVA-C02)',
 };
+
+export const EXAM_LIST = [
+  {
+    code: 'AWS_CLF_C01',
+    free: false,
+    name: 'AWS Certified Cloud Practitioner',
+  },
+  {
+    code: 'AWS_DVA_C02',
+    free: true,
+    name: 'AWS Certified Developer - Associate',
+  },
+  {
+    code: 'AWS_SAA_C03',
+    free: false,
+    name: 'AWS Certified Solutions Architect - Associate',
+  },
+];

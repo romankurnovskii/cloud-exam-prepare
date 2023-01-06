@@ -101,8 +101,20 @@ export const App = () => {
 
   const calcScore = (progressDta: any) => {
     let score = 0;
-    const correct = progressDta['questions_correct'];
-    const wrong = progressDta['questions_wrong'];
+    let correct = 0;
+    let wrong = 0;
+
+    if (progressDta.exams) {
+      const examData = progressDta.exams[getLocalExamCode()];
+      if (examData) {
+        const { questions_correct, questions_wrong } = examData;
+        correct = questions_correct;
+        wrong = questions_wrong;
+      }
+    } else {
+      correct = progressDta['questions_correct'];
+      wrong = progressDta['questions_wrong'];
+    }
     const count = correct + wrong;
     try {
       score = Math.round((correct / count) * 100) || 0;
@@ -165,6 +177,7 @@ export const App = () => {
           questionsCorrect: res.data['questions_correct'],
           questionsWrong: res.data['questions_wrong'],
           score: calcScore(res.data),
+          exams: res.data?.exams,
         };
       });
     });
@@ -247,6 +260,7 @@ export const App = () => {
               questionsCorrect={progress.questionsCorrect}
               questionsWrong={progress.questionsWrong}
               score={progress.score}
+              exams={progress.exams}
             />
           </div>
           <div className='block'>

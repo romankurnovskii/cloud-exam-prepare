@@ -1,6 +1,6 @@
 ## About
 
-AWS Certified Developer Associate exam questions 2022 + questions for DVA-C02
+AWS Certified exam questions 2023 + questions
 
 Project: https://www.cloud-exam-prepare.com/
 

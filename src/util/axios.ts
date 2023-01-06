@@ -12,6 +12,7 @@ import {
 const { backend } = Config;
 
 enum SERVER_ENDPOINTS {
+  GET_EXAM_LIST = '/aws/getExams',
   GET_PROGRESS_DATA = '/aws/getProgressData',
   GET_QUESTION = '/aws/getQuestion',
   GET_RANDOM_QUESTION = '/aws/getRandomQuestion',
@@ -57,6 +58,10 @@ export const ApiBeResolver = async (
     // error.response.data.message
     return Promise.reject(error);
   }
+};
+
+export const getExamList = async (): Promise<any> => {
+  return ApiBeResolver('GET', SERVER_ENDPOINTS.GET_EXAM_LIST);
 };
 
 export const getQuestion = async (questionId: string) => {

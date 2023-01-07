@@ -1,3 +1,6 @@
+import { EXAM_CODES } from '../config';
+import { getLocalExamCode } from '../util/helpers';
+
 export type ProgressDataType = {
   questionsAnswered: number;
   questionsCorrect: number;
@@ -12,7 +15,9 @@ export type ProgressDataType = {
 };
 
 export default function Progress(props: ProgressDataType) {
-  const examCode = props.exams ? Object.keys(props.exams)[0] : '';
+  const examCode = getLocalExamCode();
+
+  console.log(12, EXAM_CODES)
   return (
     <div className='card'>
       <header className='card-header'>
@@ -25,9 +30,9 @@ export default function Progress(props: ProgressDataType) {
               Exam: {examCode}
               <p>
                 <strong>Correct:</strong>{' '}
-                {props.exams[examCode]['questions_correct']} /{' '}
+                {props.exams[examCode]?.['questions_correct']} /{' '}
                 <strong>Wrong:</strong>{' '}
-                {props.exams[examCode]['questions_wrong']}
+                {props.exams[examCode]?.['questions_wrong']}
               </p>
               <p>
                 <strong>Score:</strong> {props.score}% / <strong>Goal:</strong>{' '}
@@ -42,7 +47,6 @@ export default function Progress(props: ProgressDataType) {
               </p>
             </>
           )}
-
           All exams statistics:
           <p>
             <strong>Answered:</strong> {props.questionsAnswered} /{' '}

@@ -2,15 +2,19 @@ import { useEffect, useState } from 'react';
 import { Dropdown } from 'react-bulma-components';
 
 import { EXAM_LIST } from '../config';
-import { useAuthContext } from '../context/AuthProvider';
-import { getExamList, getUserInfo } from '../util/axios';
+import { getExamList } from '../util/axios';
 import { getLocalExamCode, setLocalExamCode } from '../util/helpers';
 
-export default function HeaderCurrentExam() {
+export type HeaderCurrentExamProps = {
+  onExamChange: () => void;
+};
+
+export default function HeaderCurrentExam({
+  onExamChange,
+}: HeaderCurrentExamProps) {
   const [exam, setExam] = useState<string>('Choose exam');
   const [examTitle, setExamTitle] = useState<string>('');
   const [exams, setExams] = useState(EXAM_LIST);
-  const { updateUserData } = useAuthContext();
 
   const examCodesMap = exams.map((ex) => {
     return (
@@ -25,16 +29,11 @@ export default function HeaderCurrentExam() {
     return _exam.length > 0 ? _exam[0].name : '';
   };
 
-  const onChangeExamHandler = (e: string) => {
-    setExam(e);
-    setExamTitle(getExamTitle(e));
-    setLocalExamCode(e);
-    getUserInfo().then((res) => {
-      const userData = res.data;
-      if (userData) {
-        updateUserData(userData);
-      }
-    });
+  const onChangeExamHandler = (ex: string) => {
+    setExam(ex);
+    setExamTitle(getExamTitle(ex));
+    setLocalExamCode(ex);
+    onExamChange()
   };
 
   useEffect(() => {

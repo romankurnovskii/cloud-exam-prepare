@@ -61,7 +61,7 @@ export const EXAM_CODES: Record<string, string> = {
 export const EXAM_LIST = [
   {
     code: 'AWS_CLF_C01',
-    free: false,
+    free: true,
     name: 'AWS Certified Cloud Practitioner',
   },
   {
@@ -71,7 +71,12 @@ export const EXAM_LIST = [
   },
   {
     code: 'AWS_SAA_C03',
-    free: false,
+    free: true,
     name: 'AWS Certified Solutions Architect - Associate',
+  },
+  {
+    code: 'AWS_SAP_C02',
+    free: true,
+    name: 'AWS Certified Solutions Architect - Professional',
   },
 ];

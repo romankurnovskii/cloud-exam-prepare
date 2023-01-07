@@ -24,9 +24,14 @@ import {
   OnSendAnswerResponseType,
 } from './types';
 import HeaderCurrentExam from './components/HeaderCurrentExam';
-import { getLocalExamCode } from './util/helpers';
+import {
+  calculateExamScore,
+  calculateLocalDBExamScore,
+  getLocalExamCode,
+} from './util/helpers';
+import { getUserInfo } from './util/axios';
 
-type LocalProgressData = ProgressDataType & {
+export type LocalProgressData = ProgressDataType & {
   questions: { [key: string]: boolean };
 };
 
@@ -38,7 +43,7 @@ const initProgressData = {
 };
 
 export const App = () => {
-  const { isAuthenticated, login } = useAuthContext();
+  const { isAuthenticated, login, updateUserData } = useAuthContext();
 
   const [progress, setProgress] = useState<ProgressDataType>(initProgressData);
   const [localDbProgress, setLocalDbProgress] = useState<LocalProgressData>({
@@ -78,52 +83,6 @@ export const App = () => {
     }
   }, [isAuthenticated]);
 
-  const calcLocalDBScore = (
-    progressData: LocalProgressData
-  ): [correct: number, wrong: number, score: number] => {
-    let correctAnswers = 0;
-
-    const answers = progressData.questions;
-    Object.keys(answers).forEach((qId) => {
-      if (answers[qId] === true) {
-        correctAnswers++;
-      }
-    });
-
-    const answersCount = Object.keys(answers).length;
-    const wrong = answersCount - correctAnswers;
-    return [
-      correctAnswers,
-      wrong,
-      Math.round((correctAnswers / answersCount) * 100),
-    ];
-  };
-
-  const calcScore = (progressDta: any) => {
-    let score = 0;
-    let correct = 0;
-    let wrong = 0;
-
-    if (progressDta.exams) {
-      const examData = progressDta.exams[getLocalExamCode()];
-      if (examData) {
-        const { questions_correct, questions_wrong } = examData;
-        correct = questions_correct;
-        wrong = questions_wrong;
-      }
-    } else {
-      correct = progressDta['questions_correct'];
-      wrong = progressDta['questions_wrong'];
-    }
-    const count = correct + wrong;
-    try {
-      score = Math.round((correct / count) * 100) || 0;
-    } catch {
-      score = 0;
-    }
-    return score;
-  };
-
   const onLoginHandler = async () => {
     login();
   };
@@ -149,7 +108,7 @@ export const App = () => {
             [payload['question_id']]: response['is_answer_correct'],
           },
         };
-        const [correct, wrong, score] = calcLocalDBScore(tmpProgress);
+        const [correct, wrong, score] = calculateLocalDBExamScore(tmpProgress);
 
         setLocalDbProgress(tmpProgress);
 
@@ -176,7 +135,7 @@ export const App = () => {
           questionsAnswered: res.data['questions_answered'],
           questionsCorrect: res.data['questions_correct'],
           questionsWrong: res.data['questions_wrong'],
-          score: calcScore(res.data),
+          score: calculateExamScore(res.data),
           exams: res.data?.exams,
         };
       });
@@ -207,11 +166,21 @@ export const App = () => {
       });
   };
 
+  const onExamChangeHandler = () => {
+    getUserInfo().then((res) => {
+      const userData = res.data;
+      if (userData) {
+        updateUserData(userData);
+      }
+    });
+    getNextQuestion();
+  };
+
   return (
     <div>
       <div className='columns'>
         <div className='column is-three-quarters'>
-          <HeaderCurrentExam />
+          <HeaderCurrentExam onExamChange={onExamChangeHandler} />
           <div className='block'>
             <Routes>
               <Route

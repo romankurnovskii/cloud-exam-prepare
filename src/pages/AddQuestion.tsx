@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { AnswerType, NewQuestionPayloadType } from '../types';
 import GoToRootButton from '../components/Buttons/GotoRoot';
 import { addNewQuestion } from '../util/axios';
-import { Box, Dropdown } from 'react-bulma-components';
-import { EXAM_CODES } from '../config';
 import { getLocalExamCode } from '../util/helpers';
 
 function AddQuestion() {
@@ -14,6 +12,7 @@ function AddQuestion() {
   const [a2, setA2] = useState('');
   const [a3, setA3] = useState('');
   const [a4, setA4] = useState('');
+  const [a5, setA5] = useState('');
   const [explanation, setExplanation] = useState('');
   const [correctAnswers, setCorrectAnswers] = useState(new Set<number>([]));
 
@@ -23,14 +22,19 @@ function AddQuestion() {
     setA2('');
     setA3('');
     setA4('');
+    setA5('');
     setExplanation('');
     setCorrectAnswers(new Set([]));
   };
 
   const onCreateHandler = () => {
-    const _answers = [a1, a2, a3, a4];
     const answers = [];
 
+    const _answers = [a1, a2, a3, a4];
+    if (a5 !== '') {
+      _answers.push(a5);
+    }
+    
     for (let i = 0; i < _answers.length; i++) {
       const answer: AnswerType = {
         id: i + 1,
@@ -68,14 +72,6 @@ function AddQuestion() {
     }
     setCorrectAnswers(tmpCorrectAnswers);
   };
-
-  // const examCodesMap = Object.entries(EXAM_CODES).map((e) => {
-  //   return (
-  //     <Dropdown.Item renderAs='a' value={e[0]}>
-  //       {e[1]}
-  //     </Dropdown.Item>
-  //   );
-  // });
 
   return (
     <div className='card'>
@@ -121,6 +117,14 @@ function AddQuestion() {
               value={a4}
               placeholder='Answer 4'
               onChange={(e) => setA4(e.target.value)}
+            ></textarea>
+          </div>
+          <div className='panel-block'>
+            <textarea
+              className='textarea'
+              value={a5}
+              placeholder='Answer 5'
+              onChange={(e) => setA5(e.target.value)}
             ></textarea>
           </div>
         </div>
@@ -169,6 +173,15 @@ function AddQuestion() {
                       onChange={(e) => onCheckCorrectAnswer(4)}
                     />
                     4
+                  </label>
+                  <label className='radio'>
+                    <input
+                      type='checkbox'
+                      name='rsvp'
+                      checked={correctAnswers.has(5)}
+                      onChange={(e) => onCheckCorrectAnswer(5)}
+                    />
+                    5
                   </label>
                 </div>
               </div>

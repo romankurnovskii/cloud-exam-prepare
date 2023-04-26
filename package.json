@@ -7,7 +7,7 @@
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "aws-jwt-verify": "^3.4.0",
-    "axios": "^1.3.5",
+    "axios": "^1.3.6",
     "cognito-token-observer": "^2.3.2",
     "crypto-browserify": "^3.12.0",
     "crypto-es": "^1.2.7",

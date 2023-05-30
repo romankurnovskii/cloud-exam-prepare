@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/node": "^18.16.0",
-    "@types/react": "^18.2.0",
+    "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.1",
     "aws-jwt-verify": "^3.4.0",
     "axios": "^1.4.0",

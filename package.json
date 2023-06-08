@@ -70,5 +70,8 @@
     "crypto": true,
     "stream": true,
     "buffer": true
+  },
+  "engines": {
+    "node": ">= 18"
   }
 }

@@ -5,7 +5,7 @@
   "dependencies": {
     "@types/node": "^18.16.0",
     "@types/react": "^18.2.8",
-    "@types/react-dom": "^18.2.1",
+    "@types/react-dom": "^18.2.4",
     "aws-jwt-verify": "^3.4.0",
     "axios": "^1.4.0",
     "cognito-token-observer": "^2.3.2",

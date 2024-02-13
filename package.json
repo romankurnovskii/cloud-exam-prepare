@@ -10,7 +10,7 @@
     "cognito-token-observer": "^2.3.2",
     "crypto-browserify": "^3.12.0",
     "crypto-es": "^1.2.7",
-    "html-react-parser": "^5.1.1",
+    "html-react-parser": "^5.1.4",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "jwk-to-pem": "^2.0.5",

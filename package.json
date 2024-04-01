@@ -5,7 +5,7 @@
   "dependencies": {
     "@types/node": "^20.11.17",
     "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.19",
+    "@types/react-dom": "^18.2.23",
     "axios": "^1.6.7",
     "cognito-token-observer": "^2.3.2",
     "crypto-browserify": "^3.12.0",

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.14.8",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.25",
     "axios": "^1.6.8",

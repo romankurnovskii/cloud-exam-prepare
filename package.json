@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/node": "^20.14.8",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.2.25",
     "axios": "^1.7.5",
     "cognito-token-observer": "^2.3.2",
